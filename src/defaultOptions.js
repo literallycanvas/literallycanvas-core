@@ -1,3 +1,5 @@
+import Pencil from "./tools/Pencil";
+
 const defaultOptions = {
     imageURLPrefix: "lib/img",
     primaryColor: "hsla(0, 0%, 0%, 1)",
@@ -16,6 +18,7 @@ const defaultOptions = {
     zoomStep: 0.2,
     snapshot: null,
     onInit: (() => {}),
+    tools: [Pencil],
 };
 
 export default defaultOptions;

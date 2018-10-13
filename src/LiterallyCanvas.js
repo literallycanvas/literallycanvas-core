@@ -2,6 +2,7 @@ import actions from "./actions";
 import bindEvents from "./bindEvents";
 import { JSONToShape, shapeToJSON } from "./shapes";
 import { renderShapeToContext } from "./canvasRenderer";
+import defaultOptions from "./defaultOptions";
 import renderSnapshotToImage from "./renderSnapshotToImage";
 import renderSnapshotToSVG from "./renderSnapshotToSVG";
 import {
@@ -637,5 +638,6 @@ class LiterallyCanvas {
     }
 }
 
+LiterallyCanvas.defaultOptions = defaultOptions;
 
 export default LiterallyCanvas;
