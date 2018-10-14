@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Literally Canvas Core - Simple Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <style>
+      body {
+        background: #EEE;
+      }
+      .literally {
+        width: 400px;
+        height: 400px;
+        position: relative;
+      }
+      .literally canvas {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="literally"></div>
+    <script src="../lib/index.js"></script>
+
+    <script type="text/javascript">
+      const LiterallyCanvas = LC.default;
+      const mainDiv = document.querySelector('.literally');
+      const lc = new LiterallyCanvas(mainDiv, {
+        ...LiterallyCanvas.defaultOptions,
+        defaultStrokeWidth: 10,
+        backgroundColor: '#FFF',
+      });
+      window.demoLC = lc;
+    </script>
+  </body>
+</html>
