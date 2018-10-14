@@ -1,9 +1,7 @@
-import { ToolWithStroke } from "./base";
-import { createShape } from "../shapes";
-
+import {ToolWithStroke} from "./base";
+import {createShape} from "../shapes";
 
 class Pencil extends ToolWithStroke {
-
     begin(x, y, lc) {
         this.color = lc.getColor("primary");
         this.currentShape = this.makeShape();
@@ -27,14 +25,20 @@ class Pencil extends ToolWithStroke {
     }
 
     makePoint(x, y, lc) {
-        return createShape("Point", {x, y, size: this.strokeWidth, color: this.color});
+        return createShape("Point", {
+            x,
+            y,
+            size: this.strokeWidth,
+            color: this.color,
+        });
     }
-    makeShape() { return createShape("LinePath") }
+    makeShape() {
+        return createShape("LinePath");
+    }
 }
 
 Pencil.prototype.name = "Pencil";
 Pencil.prototype.iconName = "pencil";
 Pencil.prototype.eventTimeThreshold = 10;
-
 
 export default Pencil;

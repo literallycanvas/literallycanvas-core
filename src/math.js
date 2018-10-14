@@ -18,11 +18,11 @@ math.toPoly = function(line) {
 var _slope = function(line, index) {
     let point;
     if (line.length < 3) {
-        point =  {x:0, y:0};
+        point = {x: 0, y: 0};
     }
     if (index === 0) {
         point = _slope(line, index + 1);
-    } else if (index === (line.length - 1)) {
+    } else if (index === line.length - 1) {
         point = _slope(line, index - 1);
     } else {
         point = math.diff(line[index - 1], line[index + 1]);
@@ -42,8 +42,10 @@ var normals = function(p, slope) {
     slope = unit(slope);
     slope.x = (slope.x * p.size) / 2;
     slope.y = (slope.y * p.size) / 2;
-    return [{x: p.x - slope.y, y: p.y + slope.x, color: p.color},
-        {x: p.x + slope.y, y: p.y - slope.x, color: p.color}];
+    return [
+        {x: p.x - slope.y, y: p.y + slope.x, color: p.color},
+        {x: p.x + slope.y, y: p.y - slope.x, color: p.color},
+    ];
 };
 
 math.len = vector => Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
@@ -51,8 +53,7 @@ math.len = vector => Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
 math.scalePositionScalar = function(val, viewportSize, oldScale, newScale) {
     const oldSize = viewportSize * oldScale;
     const newSize = viewportSize * newScale;
-    return val + ((oldSize - newSize) / 2);
+    return val + (oldSize - newSize) / 2;
 };
-
 
 export default math;

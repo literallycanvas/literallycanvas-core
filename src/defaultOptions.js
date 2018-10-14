@@ -17,7 +17,7 @@ const defaultOptions = {
     zoomMax: 4.0,
     zoomStep: 0.2,
     snapshot: null,
-    onInit: (() => {}),
+    onInit: () => {},
     tools: [Pencil],
 };
 

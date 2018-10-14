@@ -1,11 +1,12 @@
 import {renderShapes, combineCanvases, getDefaultImageRect} from "./util";
-import { JSONToShape } from "./shapes";
-
+import {JSONToShape} from "./shapes";
 
 // mostly copypasta from LiterallyCanvas.coffee
 const INFINITE = "infinite";
 const renderWatermark = function(ctx, image, scale) {
-    if (!image.width) { return }
+    if (!image.width) {
+        return;
+    }
 
     ctx.save();
     ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2);
@@ -16,14 +17,23 @@ const renderWatermark = function(ctx, image, scale) {
 
 const renderSnapshotToImage = function(snapshot, opts) {
     let s;
-    if (opts == null) { opts = {} }
-    if (opts.scale == null) { opts.scale = 1 }
+    if (opts == null) {
+        opts = {};
+    }
+    if (opts.scale == null) {
+        opts.scale = 1;
+    }
 
-    const shapes = snapshot.shapes.map((s) => JSONToShape(s));
-    let backgroundShapes = snapshot.backgroundShapes.map((s) => JSONToShape(s));
+    const shapes = snapshot.shapes.map(s => JSONToShape(s));
+    let backgroundShapes = snapshot.backgroundShapes.map(s => JSONToShape(s));
 
-    if (opts.margin == null) { opts.margin = {top: 0, right: 0, bottom: 0, left: 0} }
-    const imageSize = snapshot.imageSize || {width: INFINITE, height: INFINITE};
+    if (opts.margin == null) {
+        opts.margin = {top: 0, right: 0, bottom: 0, left: 0};
+    }
+    const imageSize = snapshot.imageSize || {
+        width: INFINITE,
+        height: INFINITE,
+    };
 
     const colors = snapshot.colors || {background: "transparent"};
     const allShapes = shapes.concat(backgroundShapes);
@@ -38,9 +48,9 @@ const renderSnapshotToImage = function(snapshot, opts) {
         opts.rect.height += opts.margin.top + opts.margin.bottom;
     } else {
         opts.rect = getDefaultImageRect(
-            allShapes.map((s) => s.getBoundingRect(watermarkCtx)),
+            allShapes.map(s => s.getBoundingRect(watermarkCtx)),
             imageSize,
-            opts.margin
+            opts.margin,
         );
     }
 
@@ -60,8 +70,8 @@ const renderSnapshotToImage = function(snapshot, opts) {
     return combineCanvases(
         watermarkCanvas,
         renderShapes(backgroundShapes, opts.rect, opts.scale),
-        renderShapes(shapes, opts.rect, opts.scale));
+        renderShapes(shapes, opts.rect, opts.scale),
+    );
 };
-
 
 export default renderSnapshotToImage;

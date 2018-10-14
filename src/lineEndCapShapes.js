@@ -1,21 +1,23 @@
 const getPoints = (x, y, angle, width, length) => [
     {
-        x: x + ((Math.cos(angle + (Math.PI / 2)) * width) / 2),
-        y: y + ((Math.sin(angle + (Math.PI / 2)) * width) / 2),
+        x: x + (Math.cos(angle + Math.PI / 2) * width) / 2,
+        y: y + (Math.sin(angle + Math.PI / 2) * width) / 2,
     },
     {
-        x: x + (Math.cos(angle) * length),
-        y: y + (Math.sin(angle) * length),
+        x: x + Math.cos(angle) * length,
+        y: y + Math.sin(angle) * length,
     },
     {
-        x: x + ((Math.cos(angle - (Math.PI / 2)) * width) / 2),
-        y: y + ((Math.sin(angle - (Math.PI / 2)) * width) / 2),
-    }
+        x: x + (Math.cos(angle - Math.PI / 2) * width) / 2,
+        y: y + (Math.sin(angle - Math.PI / 2) * width) / 2,
+    },
 ];
 
 const arrow = {
     drawToCanvas(ctx, x, y, angle, width, color, length) {
-        if (length == null) { length = 0 }
+        if (length == null) {
+            length = 0;
+        }
         length = length || width;
 
         ctx.fillStyle = color;
@@ -31,7 +33,9 @@ const arrow = {
     },
 
     svg(x, y, angle, width, color, length) {
-        if (length == null) { length = 0 }
+        if (length == null) {
+            length = 0;
+        }
         length = length || width;
         const points = getPoints(x, y, angle, width, length);
 
@@ -43,5 +47,4 @@ points='${points.map(p => `${p.x},${p.y}`)}' />\
     },
 };
 
-
-export default { arrow };
+export default {arrow};

@@ -1,0 +1,35 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true
+  },
+  "extends": [
+      "eslint:recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "experimentalObjectRestSpread": true
+      },
+      "sourceType": "module"
+  },
+  "rules": {
+      "strict": 0,
+      "linebreak-style": [
+          "error",
+          "unix"
+      ],
+      "no-console": [
+          "off"
+      ],
+      "no-unused-vars": [
+          "warn"
+      ],
+      "no-constant-condition": [
+          "warn"
+      ],
+      "no-empty": [
+          "warn"
+      ]
+  }
+}

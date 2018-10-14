@@ -14,11 +14,10 @@ class Tool {
     willBecomeInactive(lc) {}
 }
 
-Tool.prototype.name = null;  // for debugging
-Tool.prototype.iconName = null;  // {imageURLPrefix}/{iconName}.png
+Tool.prototype.name = null; // for debugging
+Tool.prototype.iconName = null; // {imageURLPrefix}/{iconName}.png
 Tool.prototype.usesSimpleAPI = true;
-Tool.prototype.optionsStyle = null;  // kind of options GUI to display
-
+Tool.prototype.optionsStyle = null; // kind of options GUI to display
 
 class ToolWithStroke extends Tool {
     constructor(lc) {
@@ -29,13 +28,14 @@ class ToolWithStroke extends Tool {
     didBecomeActive(lc) {
         const unsubscribeFuncs = [];
         this.unsubscribe = () => {
-            unsubscribeFuncs.map((func) => func());
+            unsubscribeFuncs.map(func => func());
         };
 
-        unsubscribeFuncs.push(lc.on("setStrokeWidth", strokeWidth => {
-            this.strokeWidth = strokeWidth;
-            lc.trigger("toolDidUpdateOptions");
-        })
+        unsubscribeFuncs.push(
+            lc.on("setStrokeWidth", strokeWidth => {
+                this.strokeWidth = strokeWidth;
+                lc.trigger("toolDidUpdateOptions");
+            }),
         );
     }
 
@@ -46,5 +46,4 @@ class ToolWithStroke extends Tool {
 
 ToolWithStroke.prototype.optionsStyle = "stroke-width";
 
-
-export { Tool, ToolWithStroke };
+export {Tool, ToolWithStroke};

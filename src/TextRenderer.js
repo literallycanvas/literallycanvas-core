@@ -1,6 +1,5 @@
 import "./fontmetrics.js";
 
-
 const parseFontString = function(font) {
     const fontItems = font.split(" ");
 
@@ -12,9 +11,12 @@ const parseFontString = function(font) {
             fontSize = maybeSize;
         }
     }
-    if (!fontSize) { throw "Font size not found" }
+    if (!fontSize) {
+        throw "Font size not found";
+    }
 
-    const remainingFontString = font.substring(fontItems[0].length + 1)
+    const remainingFontString = font
+        .substring(fontItems[0].length + 1)
         .replace("bold ", "")
         .replace("italic ", "")
         .replace("underline ", "");
@@ -23,7 +25,6 @@ const parseFontString = function(font) {
 
     return {fontSize, fontFamily};
 };
-
 
 const getNextLine = function(ctx, text, forcedWidth) {
     if (!text.length) {
@@ -36,17 +37,17 @@ const getNextLine = function(ctx, text, forcedWidth) {
     let wasInWord = false;
 
     while (true) {
+        console.log('boo');
         endIndex += 1;
         const isEndOfString = endIndex >= text.length;
 
-        const isWhitespace = (!isEndOfString) && text[endIndex].match(/\s/);
+        const isWhitespace = !isEndOfString && text[endIndex].match(/\s/);
         const isNonWord = isWhitespace || isEndOfString;
 
         const textToHere = text.substring(0, endIndex);
-        const doesSubstringFit = forcedWidth ?
-            ctx.measureTextWidth(textToHere).width <= forcedWidth
-            :
-            true;
+        const doesSubstringFit = forcedWidth
+            ? ctx.measureTextWidth(textToHere).width <= forcedWidth
+            : true;
 
         if (doesSubstringFit) {
             lastOkayIndex = endIndex;
@@ -67,19 +68,25 @@ const getNextLine = function(ctx, text, forcedWidth) {
                 return [text, ""];
             } else if (lastGoodIndex > 0) {
                 let nextWordStartIndex = lastGoodIndex + 1;
-                while ((nextWordStartIndex < text.length) && text[nextWordStartIndex].match(/\s/)) {
+                while (
+                    nextWordStartIndex < text.length &&
+                    text[nextWordStartIndex].match(/\s/)
+                ) {
                     nextWordStartIndex += 1;
                 }
                 return [
-                    text.substring(0, lastGoodIndex), text.substring(nextWordStartIndex)];
+                    text.substring(0, lastGoodIndex),
+                    text.substring(nextWordStartIndex),
+                ];
             } else {
                 return [
-                    text.substring(0, lastOkayIndex), text.substring(lastOkayIndex)];
+                    text.substring(0, lastOkayIndex),
+                    text.substring(lastOkayIndex),
+                ];
             }
         }
     }
 };
-
 
 const getLinesToRender = function(ctx, text, forcedWidth) {
     const textSplitOnLines = text.split(/\r\n|\r|\n/g);
@@ -90,7 +97,11 @@ const getLinesToRender = function(ctx, text, forcedWidth) {
         if (nextLine) {
             while (nextLine) {
                 lines.push(nextLine);
-                [nextLine, remainingText] = getNextLine(ctx, remainingText, forcedWidth);
+                [nextLine, remainingText] = getNextLine(
+                    ctx,
+                    remainingText,
+                    forcedWidth,
+                );
             }
         } else {
             lines.push(textLine);
@@ -98,7 +109,6 @@ const getLinesToRender = function(ctx, text, forcedWidth) {
     }
     return lines;
 };
-
 
 class TextRenderer {
     constructor(ctx, text, font, forcedWidth, forcedHeight) {
@@ -110,7 +120,11 @@ class TextRenderer {
 
         ctx.font = this.font;
         ctx.textBaseline = "baseline";
-        this.emDashWidth = ctx.measureTextWidth("—", fontSize, fontFamily).width;
+        this.emDashWidth = ctx.measureTextWidth(
+            "—",
+            fontSize,
+            fontFamily,
+        ).width;
         this.caratWidth = ctx.measureTextWidth("|", fontSize, fontFamily).width;
 
         this.lines = getLinesToRender(ctx, this.text, this.forcedWidth);
@@ -128,11 +142,19 @@ class TextRenderer {
             width: Math.max(...this.metricses.map(({width}) => width)),
             height: Math.max(...this.metricses.map(({height}) => height)),
             bounds: {
-                minx: Math.min(...this.metricses.map(({bounds}) => bounds.minx)),
-                miny: Math.min(...this.metricses.map(({bounds}) => bounds.miny)),
-                maxx: Math.max(...this.metricses.map(({bounds}) => bounds.maxx)),
-                maxy: Math.max(...this.metricses.map(({bounds}) => bounds.maxy))
-            }
+                minx: Math.min(
+                    ...this.metricses.map(({bounds}) => bounds.minx),
+                ),
+                miny: Math.min(
+                    ...this.metricses.map(({bounds}) => bounds.miny),
+                ),
+                maxx: Math.max(
+                    ...this.metricses.map(({bounds}) => bounds.maxx),
+                ),
+                maxy: Math.max(
+                    ...this.metricses.map(({bounds}) => bounds.maxy),
+                ),
+            },
         };
 
         this.boundingBoxWidth = Math.ceil(this.metrics.width);
@@ -144,13 +166,15 @@ class TextRenderer {
         let i = 0;
 
         for (let line of this.lines) {
-            ctx.fillText(line, x, y + (i++ * this.metrics.leading));
+            ctx.fillText(line, x, y + i++ * this.metrics.leading);
         }
     }
 
     getWidth(isEditing) {
-    // if isEditing == true, add X padding to account for carat
-        if (isEditing == null) { isEditing = false }
+        // if isEditing == true, add X padding to account for carat
+        if (isEditing == null) {
+            isEditing = false;
+        }
         if (this.forcedWidth) {
             return this.forcedWidth;
         } else {
@@ -161,8 +185,9 @@ class TextRenderer {
             }
         }
     }
-    getHeight() { return this.forcedHeight || (this.metrics.leading * this.lines.length) }
+    getHeight() {
+        return this.forcedHeight || this.metrics.leading * this.lines.length;
+    }
 }
-
 
 export default TextRenderer;

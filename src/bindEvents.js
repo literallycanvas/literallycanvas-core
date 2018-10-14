@@ -5,7 +5,6 @@ const coordsForTouchEvent = function(el, e) {
     return [tx - p.left, ty - p.top];
 };
 
-
 const position = function(el, e) {
     const p = el.getBoundingClientRect();
     return {
@@ -13,7 +12,6 @@ const position = function(el, e) {
         top: e.clientY - p.top,
     };
 };
-
 
 const buttonIsDown = function(e) {
     if (e.buttons != null) {
@@ -23,9 +21,10 @@ const buttonIsDown = function(e) {
     }
 };
 
-
 const bindEvents = function(lc, canvas, panWithKeyboard) {
-    if (panWithKeyboard == null) { panWithKeyboard = false }
+    if (panWithKeyboard == null) {
+        panWithKeyboard = false;
+    }
     const unsubs = [];
 
     const mouseMoveListener = e => {
@@ -46,7 +45,9 @@ const bindEvents = function(lc, canvas, panWithKeyboard) {
     };
 
     canvas.addEventListener("mousedown", e => {
-        if (e.target.tagName.toLowerCase() !== "canvas") { return }
+        if (e.target.tagName.toLowerCase() !== "canvas") {
+            return;
+        }
 
         const down = true;
         e.preventDefault();
@@ -58,7 +59,6 @@ const bindEvents = function(lc, canvas, panWithKeyboard) {
         document.addEventListener("mousemove", mouseMoveListener);
         document.addEventListener("mouseup", mouseUpListener);
     });
-
 
     const touchMoveListener = function(e) {
         e.preventDefault();
@@ -74,7 +74,9 @@ const bindEvents = function(lc, canvas, panWithKeyboard) {
     };
 
     canvas.addEventListener("touchstart", function(e) {
-        if (e.target.tagName.toLowerCase() !== "canvas") { return }
+        if (e.target.tagName.toLowerCase() !== "canvas") {
+            return;
+        }
         e.preventDefault();
         if (e.touches.length === 1) {
             lc.pointerDown(...coordsForTouchEvent(canvas, e));
@@ -90,10 +92,18 @@ const bindEvents = function(lc, canvas, panWithKeyboard) {
         console.warn("Keyboard panning is deprecated.");
         const listener = function(e) {
             switch (e.keyCode) {
-            case 37: lc.pan(-10, 0); break;
-            case 38: lc.pan(0, -10); break;
-            case 39: lc.pan(10, 0); break;
-            case 40: lc.pan(0, 10); break;
+                case 37:
+                    lc.pan(-10, 0);
+                    break;
+                case 38:
+                    lc.pan(0, -10);
+                    break;
+                case 39:
+                    lc.pan(10, 0);
+                    break;
+                case 40:
+                    lc.pan(0, 10);
+                    break;
             }
             lc.repaintAllLayers();
         };
@@ -102,8 +112,7 @@ const bindEvents = function(lc, canvas, panWithKeyboard) {
         unsubs.push(() => document.removeEventListener(listener));
     }
 
-    return () => unsubs.map((f) => f());
+    return () => unsubs.map(f => f());
 };
-
 
 export default bindEvents;
