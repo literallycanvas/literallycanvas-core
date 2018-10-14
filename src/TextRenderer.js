@@ -37,7 +37,6 @@ const getNextLine = function(ctx, text, forcedWidth) {
     let wasInWord = false;
 
     while (true) {
-        console.log('boo');
         endIndex += 1;
         const isEndOfString = endIndex >= text.length;
 

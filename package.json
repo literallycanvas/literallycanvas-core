@@ -13,8 +13,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettier"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn prettier",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -41,6 +47,7 @@
     "gulp-rename": "~1.2.2",
     "gulp-uglify": "~1.5.1",
     "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
     "prettier": "1.14.3",
     "uglify-js": "~2.6.1",
     "vinyl-source-stream": "~1.1.0",
