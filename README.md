@@ -1,8 +1,10 @@
-Literally Canvas v0.5.2
+Literally Canvas Core v0.6.0
 =======================
 
 Literally Canvas is an extensible, open source (BSD-licensed), HTML5 drawing
-widget. Its only dependency is [React.js](http://facebook.github.io/react/).
+widget. It has no external dependencies.
+
+This is the core libary which provides an interface for drawing on the canvas.
 
 Get help on our mailing list by sending an email to
 [literallycanvas+subscribe@googlegroups.com](mailto:literallycanvas+subscribe@googlegroups.com)
@@ -10,14 +12,21 @@ or by visiting [Google Groups](https://groups.google.com/forum/#!forum/literally
 
 ### [Full documentation](http://literallycanvas.com)
 
+### [Main Repo](https://github.com/literallycanvas/literallycanvas)
+
 ### [Examples](http://github.com/literallycanvas/literallycanvas-demos)
 
 Along with the CSS, JS, and image assets, this is all it takes:
 
-```javascript
-<div class="my-drawing"></div>
-<script>
-  LC.init(document.getElementsByClassName('my-drawing')[0]);
+```html
+<div class="literally"></div>
+<script type="text/javascript">
+  const drawingEl = document.querySelector('.literally');
+  const lc = new LiterallyCanvas(drawingEl, {
+    ...LiterallyCanvas.defaultOptions,
+    defaultStrokeWidth: 10,
+    backgroundColor: '#FFF',
+  });
 </script>
 ```
 
@@ -33,12 +42,8 @@ Pull requests will be merged promptly if they are basically OK.
 Developing
 ----------
 
-Setup: `npm install --dev`
+Setup: `yarn install --dev`
 
 Watching and serving: `gulp dev`
 
-Browse to `localhost:8080/demo` and modify `demo/index.html` to test code
-in progress.
-
-To generate a production-ready `.js` file, run `gulp` and pull out either
-`lib/js/literallycanvas.js` or `lib/js/literallycanvas.min.js`.
+Go to `demo/simple.html` to see a simple pencil drawing example.
