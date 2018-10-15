@@ -1,6 +1,6 @@
 {
   "name": "literallycanvas-core",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "HTML5 drawing widget - core lib",
   "main": "lib/index.js",
   "files": [
