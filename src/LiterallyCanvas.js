@@ -1,4 +1,4 @@
-import actions from "./actions";
+import * as actions from "./actions";
 import bindEvents from "./bindEvents";
 import {JSONToShape, shapeToJSON} from "./shapes";
 import {renderShapeToContext} from "./canvasRenderer";
