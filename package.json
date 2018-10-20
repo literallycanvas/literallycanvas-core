@@ -12,7 +12,8 @@
     "test": "jest --no-cache",
     "test:coverage": "jest --no-cache --coverage",
     "test:watch": "jest --no-cache --watch",
-    "build": "webpack -d --watch",
+    "build": "webpack -d",
+    "build:watch": "webpack -d --watch",
     "prettier": "prettier --write \"src/**/*.js\"",
     "release": "semantic-release",
     "lint": "eslint src"
