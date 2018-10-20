@@ -23,13 +23,13 @@
 
   <body>
     <div class="literally"></div>
-    <script src="../lib/index.js"></script>
+    <script src="../dist/bundle.js"></script>
 
     <script type="text/javascript">
-      const LiterallyCanvas = LC.default;
+      const LiterallyCanvas = LC.LiterallyCanvas;
       const mainDiv = document.querySelector('.literally');
       const lc = new LiterallyCanvas(mainDiv, {
-        ...LiterallyCanvas.defaultOptions,
+        ...LC.defaultOptions,
         defaultStrokeWidth: 10,
         backgroundColor: '#FFF',
       });

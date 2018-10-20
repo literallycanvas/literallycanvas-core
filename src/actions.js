@@ -97,4 +97,4 @@ class AddShapeAction {
     }
 }
 
-export default {ClearAction, MoveAction, AddShapeAction};
+export {ClearAction, MoveAction, AddShapeAction};
