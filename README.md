@@ -42,8 +42,10 @@ Pull requests will be merged promptly if they are basically OK.
 Developing
 ----------
 
-Setup: `yarn install --dev`
+Setup: `yarn`
 
-Watching and serving: `gulp dev`
+Build and watch: `yarn build:watch` 
+
+Test and watch: `yarn test:watch` 
 
 Go to `demo/simple.html` to see a simple pencil drawing example.
