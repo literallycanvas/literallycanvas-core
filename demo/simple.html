@@ -12,17 +12,28 @@
         width: 400px;
         height: 400px;
         position: relative;
+        margin-bottom: 8px;
       }
       .literally canvas {
         position: absolute;
         top: 0px;
         left: 0px;
       }
+      button { background-color: rgb(199, 199, 199); margin-bottom: 8px; }
     </style>
   </head>
 
   <body>
     <div class="literally"></div>
+    <button onclick="demoLC.setColor('primary', '#000000')">Black</button>
+    <button onclick="demoLC.setColor('primary', '#ff0000')">Red</button>
+    <button onclick="demoLC.setColor('primary', '#00ff00')">Green</button>
+    <button onclick="demoLC.setColor('primary', '#0000ff')">Blue</button>
+    <br>
+    <button onclick="demoLC.trigger('setStrokeWidth', 10)">10px</button>
+    <button onclick="demoLC.trigger('setStrokeWidth', 20)">20px</button>
+    <button onclick="demoLC.trigger('setStrokeWidth', 30)">30px</button>
+
     <script src="../dist/bundle.js"></script>
 
     <script type="text/javascript">
