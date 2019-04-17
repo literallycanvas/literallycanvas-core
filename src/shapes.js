@@ -796,8 +796,8 @@ defineShape("Text", {
         const lcBoundingRect = {
             x: -lc.position.x / lc.scale,
             y: -lc.position.y / lc.scale,
-            width: lc.canvas.width / lc.scale,
-            height: lc.canvas.height / lc.scale,
+            width: lc.canvas.offsetWidth / lc.scale,
+            height: lc.canvas.offsetHeight / lc.scale,
         };
         // really just enforce max width
         if (br.x + br.width > lcBoundingRect.x + lcBoundingRect.width) {
