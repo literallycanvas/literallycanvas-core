@@ -1,5 +1,16 @@
-import * as toolsBase from "./tools/base";
-import Pencil from "./tools/Pencil";
+import {
+    toolsBase,
+    Pencil,
+    Line,
+    Eraser,
+    Ellipse,
+    Eyedropper,
+    Pan,
+    Rectangle,
+    SelectShape,
+    Text,
+    Polygon,
+} from "./tools";
 import * as actions from "./actions";
 import bindEvents from "./bindEvents";
 import * as canvasRenderer from "./canvasRenderer";
@@ -32,6 +43,15 @@ export {
     util,
     toolsBase,
     Pencil,
+    Line,
+    Eraser,
+    Ellipse,
+    Eyedropper,
+    Pan,
+    Rectangle,
+    SelectShape,
+    Text,
+    Polygon,
 };
 
 if (window) {
@@ -52,6 +72,15 @@ if (window) {
         util,
         toolsBase,
         Pencil,
+        Line,
+        Eraser,
+        Ellipse,
+        Eyedropper,
+        Pan,
+        Rectangle,
+        SelectShape,
+        Text,
+        Polygon,
     };
 }
 
