@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/literallycanvas/literallycanvas-core/compare/v1.0.1...v1.1.0) (2019-10-29)
+
+
+### Features
+
+* **tools:** Line, Eraser, Ellipse, Eyedropper, Pan, Rectangle, SelectShape, Text, Polygon ([645084e](https://github.com/literallycanvas/literallycanvas-core/commit/645084e))
+
 ## [1.0.1](https://github.com/literallycanvas/literallycanvas-core/compare/v1.0.0...v1.0.1) (2018-10-21)
 
 
