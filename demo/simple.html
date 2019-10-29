@@ -33,18 +33,44 @@
     <button onclick="demoLC.trigger('setStrokeWidth', 10)">10px</button>
     <button onclick="demoLC.trigger('setStrokeWidth', 20)">20px</button>
     <button onclick="demoLC.trigger('setStrokeWidth', 30)">30px</button>
+    <br>
+    <button onclick="demoLC.setTool(Pencil)">Pencil</button>
+    <button onclick="demoLC.setTool(Line)">Line</button>
+    <button onclick="demoLC.setTool(Eraser)">Eraser</button>
+    <button onclick="demoLC.setTool(Ellipse)">Ellipse</button>
+    <button onclick="demoLC.setTool(Pan)">Pan</button>
+    <button onclick="demoLC.setTool(Rectangle)">Rectangle</button>
+    <button onclick="demoLC.setTool(SelectShape)">SelectShape</button>
+    <button onclick="demoLC.setTool(Text)">Text</button>
+    <button onclick="demoLC.setTool(Eyedropper)">Eyedropper</button>
+    <button onclick="demoLC.setTool(Polygon)">Polygon</button>
 
     <script src="../dist/bundle.js"></script>
 
     <script type="text/javascript">
+      
       const LiterallyCanvas = LC.LiterallyCanvas;
+      console.log(LC, '=====LiterallyCanvas')
       const mainDiv = document.querySelector('.literally');
       const lc = new LiterallyCanvas(mainDiv, {
         ...LC.defaultOptions,
         defaultStrokeWidth: 10,
         backgroundColor: '#FFF',
+        tools:[LC.Pencil,LC.Line,LC.Eraser]
       });
+      console.log(lc)
       window.demoLC = lc;
+      // Tools
+      window.Pencil = new LC.Pencil(lc);
+      window.Line = new LC.Line(lc);
+      window.Eraser = new LC.Eraser(lc);
+      window.Ellipse = new LC.Ellipse(lc);
+      window.Pan  = new LC.Pan(lc);
+      window.Rectangle  = new LC.Rectangle(lc);
+      window.SelectShape  = new LC.SelectShape(lc);
+      window.Eyedropper  = new LC.Eyedropper(lc);
+      window.Text  = new LC.Text(lc);
+      window.Polygon  = new LC.Polygon(lc);
     </script>
   </body>
 </html>
