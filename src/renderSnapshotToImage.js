@@ -15,6 +15,22 @@ const renderWatermark = function(ctx, image, scale) {
     ctx.restore();
 };
 
+const fixNegativeSize = function (shape) {
+    if (shape.width < 0) {
+        let width = -shape.width
+        shape.x = shape.x - width
+        shape.width = width
+    }
+
+    if (shape.height < 0) {
+        let height = -shape.height
+        shape.y = shape.y - height
+        shape.height = height
+    }
+
+    return shape
+}
+
 const renderSnapshotToImage = function(snapshot, opts) {
     let s;
     if (opts == null) {
@@ -24,7 +40,7 @@ const renderSnapshotToImage = function(snapshot, opts) {
         opts.scale = 1;
     }
 
-    const shapes = snapshot.shapes.map(s => JSONToShape(s));
+    const shapes = snapshot.shapes.map(s => JSONToShape(fixNegativeSize(s)));
     let backgroundShapes = snapshot.backgroundShapes.map(s => JSONToShape(s));
 
     if (opts.margin == null) {
