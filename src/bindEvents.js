@@ -84,7 +84,7 @@ const bindEvents = function(lc, canvas, panWithKeyboard) {
             document.addEventListener("touchend", touchEndListener);
             document.addEventListener("touchcancel", touchEndListener);
         } else {
-            lc.pointerMove(...coordsForTouchEvent(canvas, e));
+            touchEndListener(e);
         }
     });
 
