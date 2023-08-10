@@ -65,7 +65,7 @@
     "browserify": "~13.0.0",
     "commit-status": "^4.3.0",
     "envify": "~3.4.0",
-    "eslint": "^5.7.0",
+    "eslint": "^6.2.1",
     "gulp": "~3.9.0",
     "gulp-rename": "~1.2.2",
     "gulp-uglify": "~1.5.1",
