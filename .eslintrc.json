@@ -1,37 +1,43 @@
 {
-  "env": {
+    "env": {
       "browser": true,
       "es6": true,
       "node": true,
       "jest": true
-  },
-  "extends": [
+    },
+    "extends": [
       "eslint:recommended"
-  ],
-  "parser": "babel-eslint",
-  "parserOptions": {
-      "ecmaFeatures": {
-          "experimentalObjectRestSpread": true
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-env"],
+        "plugins": []
       },
-      "sourceType": "module"
-  },
-  "rules": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
+    "rules": {
       "strict": 0,
       "linebreak-style": [
-          "error",
-          "unix"
+        "error",
+        "unix"
       ],
       "no-console": [
-          "off"
+        "off"
       ],
       "no-unused-vars": [
-          "warn"
+        "warn"
       ],
       "no-constant-condition": [
-          "warn"
+        "warn"
       ],
       "no-empty": [
-          "warn"
+        "warn"
       ]
+    }
   }
-}
+  
